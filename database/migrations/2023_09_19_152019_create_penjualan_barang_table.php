@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_barang');
             $table->integer('stok');
-            $table->integer('jumlah_terjual');
+            $table->integer('jumlah_terjual')->default(0)->nullable();
             $table->date('tanggal_transaksi');
             $table->string('jenis_barang');
             $table->timestamps();

@@ -39,7 +39,16 @@ class PenjualanBarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nama_barang'       =>  'required|unique:penjualan_barang',
+            'stok'              =>  'required',
+            'tanggal_transaksi' =>  'required|date_format:Y-m-d',
+            'jenis_barang'      =>  'required',
+        ]);
+
+        PenjualanBarang::create($validatedData);
+
+        return redirect()->route('backsite.dashboard-penjualan.index');
     }
 
     /**
@@ -61,7 +70,10 @@ class PenjualanBarangController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = PenjualanBarang::find($id);
+        return view('pages.backsite.penjualan.edit', [
+            'data'  => $data
+        ]);
     }
 
     /**
@@ -73,7 +85,13 @@ class PenjualanBarangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $item = PenjualanBarang::findOrFail($id);
+
+        $item->update($data);
+
+        return redirect()->route('backsite.dashboard-penjualan.index');
     }
 
     /**
@@ -84,6 +102,9 @@ class PenjualanBarangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = PenjualanBarang::findOrFail($id);
+        $item->delete();
+
+        return redirect()->route('backsite.dashboard-penjualan.index');
     }
 }
