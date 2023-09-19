@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\backsite\PenjualanBarangController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::group(['prefix' => 'backsite', 'as' => 'backsite.'], 
+    function() {
+    // dashboard role = admin
+    Route::resource('dashboard-penjualan', PenjualanBarangController::class);
 });
