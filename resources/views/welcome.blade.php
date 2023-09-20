@@ -33,7 +33,8 @@
                 <option value="terendah">Terendah</option>
             </select>
 
-            <button class="bg-blue-500 text-white px-4 py-2 rounded-md m-2" onclick="applyFilters()">Cari Berdasarkan Filter</button>
+            <button class="bg-blue-500 text-white px-4 py-2 rounded-md m-2" onclick="applyFilters()">Cari </button>
+            <a href="{{ route('backsite.dashboard-penjualan.index') }}" class="bg-green-500 text-white px-4 py-2 rounded-md m-1 hover:bg-green-600">Halaman Backend</a>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="product-list">
