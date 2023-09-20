@@ -44,7 +44,7 @@
                                 @foreach ($data as $item)
                                     <tr>
                                         <td>
-                                            1
+                                            {{ $item->id }}
                                         </td>
                                         <td>{{ $item->nama_barang }}</td>
                                         <td>{{ $item->stok }}</td>
