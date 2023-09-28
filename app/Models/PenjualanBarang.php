@@ -12,5 +12,10 @@ class PenjualanBarang extends Model
     protected $table = 'penjualan_barang';
 
     protected $fillable = ['nama_barang', 'stok', 'tanggal_transaksi', 'jenis_barang'];
+    
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'id_product', 'id');
+    }
 
 }

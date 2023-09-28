@@ -15,11 +15,9 @@ return new class extends Migration
     {
         Schema::create('penjualan_barang', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_barang');
-            $table->integer('stok');
+            $table->foreignId('id_product')->references('id')->on('products')->nullable()->onDelete('cascade');
             $table->integer('jumlah_terjual')->default(0)->nullable();
             $table->date('tanggal_transaksi');
-            $table->string('jenis_barang');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('penjualan_barang');
+        //
     }
 };

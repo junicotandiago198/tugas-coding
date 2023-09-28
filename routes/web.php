@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\backsite\PenjualanBarangController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\backsite\CategoryController;
+use App\Http\Controllers\backsite\ProductController;
+use App\Http\Controllers\backsite\PenjualanBarangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,5 +23,7 @@ Route::get('/', function () {
 Route::group(['prefix' => 'backsite', 'as' => 'backsite.'], 
     function() {
     // dashboard role = admin
+    Route::resource('dashboard-jenis-barang', CategoryController::class);
+    Route::resource('dashboard-barang', ProductController::class);
     Route::resource('dashboard-penjualan', PenjualanBarangController::class);
 });

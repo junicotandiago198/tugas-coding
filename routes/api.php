@@ -21,4 +21,3 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/penjualan', [PenjualanController::class, 'index']);
 Route::get('/penjualan/search', [PenjualanController::class, 'search']);
-
