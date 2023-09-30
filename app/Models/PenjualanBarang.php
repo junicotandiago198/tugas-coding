@@ -11,7 +11,7 @@ class PenjualanBarang extends Model
 
     protected $table = 'penjualan_barang';
 
-    protected $fillable = ['nama_barang', 'stok', 'tanggal_transaksi', 'jenis_barang'];
+    protected $fillable = ['id_product', 'jumlah_terjual'];
     
     public function product()
     {

@@ -19,6 +19,9 @@ use App\Http\Controllers\backsite\PenjualanBarangController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/penjualan', function () {
+    return view('penjualan');
+});
 
 Route::group(['prefix' => 'backsite', 'as' => 'backsite.'], 
     function() {

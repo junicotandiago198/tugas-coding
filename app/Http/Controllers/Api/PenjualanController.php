@@ -10,7 +10,7 @@ class PenjualanController extends Controller
 {
     public function index()
     {
-        $penjualan = PenjualanBarang::all(); 
+        $penjualan = PenjualanBarang::with('product.category')->get(); 
         return response()->json($penjualan);
     }
 
