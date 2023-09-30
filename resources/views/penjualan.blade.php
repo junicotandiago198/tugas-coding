@@ -62,29 +62,73 @@
         <button class="bg-blue-500 text-white px-4 py-2 rounded-md" onclick="applyFilters()">Fillter Product</button>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="product-list">
-    </div>
+    <h2 class="text-2xl font-bold tracking-tight text-gray-900 m-8">LIST PRODUCTS / BARANG TERJUAL </h2>
+
+    {{-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="product-list">
+    </div> --}}
+    
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg" id="product-list">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Nama Product
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Jumlah Terjual
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Tanggal Transaksi
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Jenis Barang
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Stok
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="product-list-body">
+                <!-- Data produk akan ditambahkan ke sini -->
+            </tbody>
+        </table>
+    </div>    
 </div>
 
 <script>
     let productsData = []; // Data penjualan
 
     function renderProducts(data) {
-        const productList = document.getElementById('product-list');
-        productList.innerHTML = '';
+        const productListBody = document.getElementById('product-list-body');
+        productListBody.innerHTML = '';
 
         data.forEach((product) => {
-            const productCard = document.createElement('div');
-            productCard.className = 'bg-white rounded-lg shadow-md p-4';
-            productCard.innerHTML = `
-                <h2 class="text-lg font-semibold mb-2">${product.product.name}</h2>
-                <p class="text-gray-600 text-sm mb-2">Jumlah Terjual: ${product.jumlah_terjual}</p>
-                <p class="text-gray-600 text-sm mb-2">Tanggal Transaksi: ${product.tanggal_transaksi}</p>
-                <p class="text-gray-600 text-sm">Jenis Barang: ${product.product.category.name}</p>
+            const productRow = document.createElement('tr');
+            productRow.className = 'bg-white border-b dark:bg-gray-900 dark:border-gray-700';
+
+            const tanggalTerformat = new Date(product.tanggal_transaksi).toLocaleDateString('id-ID');
+
+            productRow.innerHTML = `
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    ${product.product.name}
+                </th>
+                <td class="px-6 py-4">
+                    ${product.jumlah_terjual}
+                </td>
+                <td class="px-6 py-4">
+                    ${tanggalTerformat}
+                </td>
+                <td class="px-6 py-4">
+                    ${product.product.category.name}
+                </td>
+                <td class="px-6 py-4">
+                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500">${product.product.stok}</a>
+                </td>
             `;
-            productList.appendChild(productCard);
+            productListBody.appendChild(productRow);
         });
     }
+
 
     function applyFilters() {
         const sortValue = document.getElementById('sort').value;
