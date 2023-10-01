@@ -15,7 +15,7 @@ class PenjualanBarangController extends Controller
      */
     public function index()
     {
-        $data = PenjualanBarang::all();
+        $data = PenjualanBarang::with('product.category')->get();
         return view('pages.backsite.penjualan.index',[
             'data'  => $data
         ]);
@@ -106,5 +106,15 @@ class PenjualanBarangController extends Controller
         $item->delete();
 
         return redirect()->route('backsite.dashboard-penjualan.index');
+    }
+
+    public function filter(Request $request)
+    {
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        $data = PenjualanBarang::whereBetween('tanggal_transaksi', [$startDate, $endDate])->get();
+
+        return view('pages.backsite.penjualan.index', compact('data', 'startDate', 'endDate'));
     }
 }

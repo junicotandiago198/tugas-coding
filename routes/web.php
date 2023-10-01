@@ -29,4 +29,5 @@ Route::group(['prefix' => 'backsite', 'as' => 'backsite.'],
     Route::resource('dashboard-jenis-barang', CategoryController::class);
     Route::resource('dashboard-barang', ProductController::class);
     Route::resource('dashboard-penjualan', PenjualanBarangController::class);
+    Route::post('dashboard-penjualan/filter', [PenjualanBarangController::class, 'filter'])->name('dashboard-penjualan.filter');
 });
