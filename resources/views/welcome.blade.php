@@ -119,6 +119,8 @@
           });
 
           if (response.ok) {
+            alert('Produk berhasil dibeli!');
+            window.location.href = '/';
             console.log('Produk berhasil dibeli');
           } else {
             console.error('Gagal membeli produk');
